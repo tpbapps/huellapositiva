@@ -1,2 +1,2 @@
 # huellapositiva
-Plataforma huellapositiva.org
+Plataforma huellapositiva.com

@@ -27,10 +27,17 @@ public class Credential {
     @Column(name = "hashed_password", nullable = false)
     private String hashedPassword;
 
-    @ManyToMany(fetch= FetchType.EAGER)
-    @JoinTable(name="credential_roles",
-            joinColumns = {@JoinColumn(name="credential_id", referencedColumnName="id")},
-            inverseJoinColumns = {@JoinColumn(name="role_id", referencedColumnName="id")}
+    @Column(name = "email_confirmed", nullable = false)
+    private Boolean emailConfirmed;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "credential_roles",
+            joinColumns = {@JoinColumn(name = "credential_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
     )
     private Set<Role> roles;
+
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "email_confirmation_id")
+    private EmailConfirmation emailConfirmation;
 }
