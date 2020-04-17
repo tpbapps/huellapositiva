@@ -1,9 +1,9 @@
 package com.huellapositiva.domain.actions;
 
-import com.huellapositiva.domain.Credential;
-import com.huellapositiva.domain.EmailConfirmation;
+import com.huellapositiva.infrastructure.orm.model.Credential;
+import com.huellapositiva.infrastructure.orm.model.EmailConfirmation;
 import com.huellapositiva.domain.exception.EmailConfirmationHashNotFound;
-import com.huellapositiva.domain.repository.JpaEmailConfirmationRepository;
+import com.huellapositiva.infrastructure.orm.JpaEmailConfirmationRepository;
 import com.huellapositiva.infrastructure.orm.JpaCredentialRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

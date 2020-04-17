@@ -1,9 +1,10 @@
 package com.huellapositiva.integration;
 
-import com.huellapositiva.domain.*;
 import com.huellapositiva.domain.actions.EmailConfirmationAction;
-import com.huellapositiva.domain.repository.JpaEmailConfirmationRepository;
+import com.huellapositiva.infrastructure.orm.JpaEmailConfirmationRepository;
 import com.huellapositiva.infrastructure.orm.JpaCredentialRepository;
+import com.huellapositiva.infrastructure.orm.model.Credential;
+import com.huellapositiva.infrastructure.orm.model.EmailConfirmation;
 import com.huellapositiva.util.TestData;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

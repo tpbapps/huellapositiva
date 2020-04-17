@@ -2,15 +2,19 @@ package com.huellapositiva.domain.repository;
 
 import com.huellapositiva.domain.*;
 import com.huellapositiva.domain.exception.RoleNotFound;
+import com.huellapositiva.infrastructure.orm.JpaEmailConfirmationRepository;
 import com.huellapositiva.infrastructure.orm.JpaRoleRepository;
 import com.huellapositiva.infrastructure.orm.JpaVolunteerRepository;
+import com.huellapositiva.infrastructure.orm.model.Credential;
+import com.huellapositiva.infrastructure.orm.model.EmailConfirmation;
+import com.huellapositiva.infrastructure.orm.model.Role;
+import com.huellapositiva.infrastructure.orm.model.Volunteer;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
-import java.util.UUID;
 
 @Component
 @Transactional
@@ -31,7 +35,7 @@ public class VolunteerRepository {
                 .orElseThrow(() -> new RoleNotFound("Role VOLUNTEER not found."));
         EmailConfirmation emailConfirmation = EmailConfirmation.builder()
                 .email(expressVolunteer.getEmail())
-                .hash(UUID.randomUUID().toString())
+                .hash(expressVolunteer.getConfirmationToken())
                 .build();
         emailConfirmation = jpaEmailConfirmationRepository.save(emailConfirmation);
         Credential credential = Credential.builder()

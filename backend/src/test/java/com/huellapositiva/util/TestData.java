@@ -1,10 +1,10 @@
 package com.huellapositiva.util;
 
-import com.huellapositiva.domain.Credential;
-import com.huellapositiva.domain.EmailConfirmation;
-import com.huellapositiva.domain.Role;
+import com.huellapositiva.infrastructure.orm.model.Credential;
+import com.huellapositiva.infrastructure.orm.model.EmailConfirmation;
+import com.huellapositiva.infrastructure.orm.model.Role;
 import com.huellapositiva.domain.Roles;
-import com.huellapositiva.domain.repository.JpaEmailConfirmationRepository;
+import com.huellapositiva.infrastructure.orm.JpaEmailConfirmationRepository;
 import com.huellapositiva.infrastructure.orm.JpaCredentialRepository;
 import com.huellapositiva.infrastructure.orm.JpaRoleRepository;
 import com.huellapositiva.infrastructure.orm.JpaVolunteerRepository;

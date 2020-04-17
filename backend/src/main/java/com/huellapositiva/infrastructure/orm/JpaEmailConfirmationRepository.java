@@ -1,6 +1,6 @@
-package com.huellapositiva.domain.repository;
+package com.huellapositiva.infrastructure.orm;
 
-import com.huellapositiva.domain.EmailConfirmation;
+import com.huellapositiva.infrastructure.orm.model.EmailConfirmation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
