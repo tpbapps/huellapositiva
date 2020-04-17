@@ -4,7 +4,7 @@ import com.huellapositiva.application.dto.RegisterVolunteerRequestDto;
 import com.huellapositiva.infrastructure.orm.model.Credential;
 import com.huellapositiva.domain.Roles;
 import com.huellapositiva.infrastructure.orm.model.Volunteer;
-import com.huellapositiva.infrastructure.orm.JpaVolunteerRepository;
+import com.huellapositiva.infrastructure.orm.repository.JpaVolunteerRepository;
 import com.huellapositiva.domain.service.VolunteerService;
 import com.huellapositiva.util.TestData;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,8 +1,8 @@
 package com.huellapositiva.integration;
 
 import com.huellapositiva.domain.actions.EmailConfirmationAction;
-import com.huellapositiva.infrastructure.orm.JpaEmailConfirmationRepository;
-import com.huellapositiva.infrastructure.orm.JpaCredentialRepository;
+import com.huellapositiva.infrastructure.orm.repository.JpaEmailConfirmationRepository;
+import com.huellapositiva.infrastructure.orm.repository.JpaCredentialRepository;
 import com.huellapositiva.infrastructure.orm.model.Credential;
 import com.huellapositiva.infrastructure.orm.model.EmailConfirmation;
 import com.huellapositiva.util.TestData;

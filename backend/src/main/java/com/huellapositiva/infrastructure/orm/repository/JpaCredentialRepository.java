@@ -1,4 +1,4 @@
-package com.huellapositiva.infrastructure.orm;
+package com.huellapositiva.infrastructure.orm.repository;
 
 import com.huellapositiva.infrastructure.orm.model.Credential;
 import org.springframework.data.jpa.repository.JpaRepository;

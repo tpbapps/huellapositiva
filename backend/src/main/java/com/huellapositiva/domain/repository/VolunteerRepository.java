@@ -2,9 +2,9 @@ package com.huellapositiva.domain.repository;
 
 import com.huellapositiva.domain.*;
 import com.huellapositiva.domain.exception.RoleNotFound;
-import com.huellapositiva.infrastructure.orm.JpaEmailConfirmationRepository;
-import com.huellapositiva.infrastructure.orm.JpaRoleRepository;
-import com.huellapositiva.infrastructure.orm.JpaVolunteerRepository;
+import com.huellapositiva.infrastructure.orm.repository.JpaEmailConfirmationRepository;
+import com.huellapositiva.infrastructure.orm.repository.JpaRoleRepository;
+import com.huellapositiva.infrastructure.orm.repository.JpaVolunteerRepository;
 import com.huellapositiva.infrastructure.orm.model.Credential;
 import com.huellapositiva.infrastructure.orm.model.EmailConfirmation;
 import com.huellapositiva.infrastructure.orm.model.Role;
