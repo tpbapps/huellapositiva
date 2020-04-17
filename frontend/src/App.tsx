@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import VolunteerRegister from './pages/VolunteerRegister/VolunteerRegister';
 import VolunteerLogin from './pages/VolunteerLogin/VolunteerLogin';
 import { Home } from './pages/Home/Home';
+import { ROUTE } from './utils/routes';
 
 const App: React.FC = () => {
   return (
@@ -12,13 +13,13 @@ const App: React.FC = () => {
         <section className="section">
           <div className="container">
             <Switch>
-              <Route exact path="/">
+              <Route exact path={ROUTE.home}>
                 <Home/>
               </Route>
-              <Route exact path="/volunteer-login">
+              <Route exact path={ROUTE.volunteer.login}>
                 <VolunteerLogin/>
               </Route>
-              <Route path="/volunteer-register">
+              <Route path={ROUTE.volunteer.register}>
                 <VolunteerRegister/>
               </Route>
             </Switch>

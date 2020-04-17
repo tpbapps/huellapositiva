@@ -2,13 +2,14 @@ import React from 'react';
 import './VolunteerRegister.scss';
 import { FormRegisterVolunteer } from '../../components/molecules/FormRegisterVolunteer';
 import { Link } from 'react-router-dom';
+import { ROUTE } from '../../utils/routes';
 
 const VolunteerRegister: React.FC = () => {
   return (
     <div className="VolunteerRegister">
       <div className={'header'}>
-        <Link to={'/'}> {'<- Inicio'}</Link>
-        <Link to={'/volunteer-login'}> {'Acceder ->'}</Link>
+        <Link to={ROUTE.home}> {'<- Inicio'}</Link>
+        <Link to={ROUTE.volunteer.login}> {'Acceder ->'}</Link>
       </div>
 
       <hr/>
