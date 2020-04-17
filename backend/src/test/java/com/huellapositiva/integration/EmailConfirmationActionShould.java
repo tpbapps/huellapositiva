@@ -1,9 +1,10 @@
 package com.huellapositiva.integration;
 
-import com.huellapositiva.domain.*;
 import com.huellapositiva.domain.actions.EmailConfirmationAction;
-import com.huellapositiva.domain.repository.CredentialRepository;
-import com.huellapositiva.domain.repository.EmailConfirmationRepository;
+import com.huellapositiva.infrastructure.orm.repository.JpaEmailConfirmationRepository;
+import com.huellapositiva.infrastructure.orm.repository.JpaCredentialRepository;
+import com.huellapositiva.infrastructure.orm.model.Credential;
+import com.huellapositiva.infrastructure.orm.model.EmailConfirmation;
 import com.huellapositiva.util.TestData;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,10 +31,10 @@ class EmailConfirmationActionShould {
     private TestData testData;
 
     @Autowired
-    private EmailConfirmationRepository emailConfirmationRepository;
+    private JpaEmailConfirmationRepository jpaEmailConfirmationRepository;
 
     @Autowired
-    private CredentialRepository credentialRepository;
+    private JpaCredentialRepository credentialRepository;
 
     @BeforeEach
     void beforeEach() {
@@ -59,11 +60,11 @@ class EmailConfirmationActionShould {
         testData.createCredential(email, hash);
 
         // WHEN
-        EmailConfirmationAction action = new EmailConfirmationAction(emailConfirmationRepository, credentialRepository);
+        EmailConfirmationAction action = new EmailConfirmationAction(jpaEmailConfirmationRepository, credentialRepository);
         action.execute(hash);
 
         // THEN
-        EmailConfirmation emailConfirmation = emailConfirmationRepository.findById(1).get();
+        EmailConfirmation emailConfirmation = jpaEmailConfirmationRepository.findById(1).get();
         assertThat(emailConfirmation.getEmail(), is(email));
         assertThat(emailConfirmation.getHash(), is(hash.toString()));
         Credential credential = emailConfirmation.getCredential();

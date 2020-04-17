@@ -1,10 +1,10 @@
 package com.huellapositiva.integration;
 
 import com.huellapositiva.application.dto.RegisterVolunteerRequestDto;
-import com.huellapositiva.domain.Credential;
+import com.huellapositiva.infrastructure.orm.model.Credential;
 import com.huellapositiva.domain.Roles;
-import com.huellapositiva.domain.Volunteer;
-import com.huellapositiva.domain.repository.VolunteerRepository;
+import com.huellapositiva.infrastructure.orm.model.Volunteer;
+import com.huellapositiva.infrastructure.orm.repository.JpaVolunteerRepository;
 import com.huellapositiva.domain.service.VolunteerService;
 import com.huellapositiva.util.TestData;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,7 +38,7 @@ class VolunteerServiceShould {
     private VolunteerService volunteerService;
 
     @Autowired
-    private VolunteerRepository volunteerRepository;
+    private JpaVolunteerRepository volunteerRepository;
 
     @BeforeEach
     void beforeEach() {

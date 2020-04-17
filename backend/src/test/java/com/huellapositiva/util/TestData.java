@@ -1,13 +1,13 @@
 package com.huellapositiva.util;
 
-import com.huellapositiva.domain.Credential;
-import com.huellapositiva.domain.EmailConfirmation;
-import com.huellapositiva.domain.Role;
+import com.huellapositiva.infrastructure.orm.model.Credential;
+import com.huellapositiva.infrastructure.orm.model.EmailConfirmation;
+import com.huellapositiva.infrastructure.orm.model.Role;
 import com.huellapositiva.domain.Roles;
-import com.huellapositiva.domain.repository.CredentialRepository;
-import com.huellapositiva.domain.repository.EmailConfirmationRepository;
-import com.huellapositiva.domain.repository.RoleRepository;
-import com.huellapositiva.domain.repository.VolunteerRepository;
+import com.huellapositiva.infrastructure.orm.repository.JpaEmailConfirmationRepository;
+import com.huellapositiva.infrastructure.orm.repository.JpaCredentialRepository;
+import com.huellapositiva.infrastructure.orm.repository.JpaRoleRepository;
+import com.huellapositiva.infrastructure.orm.repository.JpaVolunteerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestComponent;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,21 +20,22 @@ import java.util.UUID;
 public class TestData {
 
     @Autowired
-    private VolunteerRepository volunteerRepository;
+    private JpaVolunteerRepository volunteerRepository;
 
     @Autowired
-    private CredentialRepository credentialRepository;
+    private JpaCredentialRepository jpaCredentialRepository;
 
     @Autowired
-    private EmailConfirmationRepository emailConfirmationRepository;
+    private JpaEmailConfirmationRepository jpaEmailConfirmationRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
+    private JpaRoleRepository roleRepository;
 
     public void resetData() {
         volunteerRepository.deleteAll();
-        credentialRepository.deleteAll();
-        emailConfirmationRepository.deleteAll();
+        jpaCredentialRepository.deleteAll();
+        jpaCredentialRepository.deleteAll();
+        jpaEmailConfirmationRepository.deleteAll();
     }
 
     public EmailConfirmation createEmailConfirmation(UUID token){
@@ -43,7 +44,7 @@ public class TestData {
                 .hash(token.toString())
                 .build();
 
-        return emailConfirmationRepository.save(emailConfirmation);
+        return jpaEmailConfirmationRepository.save(emailConfirmation);
     }
 
     public void createCredential( String email, UUID token){
@@ -58,6 +59,6 @@ public class TestData {
                 .roles(Collections.singleton(role))
                 .build();
 
-        credentialRepository.save(credential);
+        jpaCredentialRepository.save(credential);
     }
 }

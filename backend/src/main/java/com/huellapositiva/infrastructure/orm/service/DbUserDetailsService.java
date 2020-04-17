@@ -1,7 +1,7 @@
-package com.huellapositiva.domain.service;
+package com.huellapositiva.infrastructure.orm.service;
 
-import com.huellapositiva.domain.Credential;
-import com.huellapositiva.domain.repository.CredentialRepository;
+import com.huellapositiva.infrastructure.orm.model.Credential;
+import com.huellapositiva.infrastructure.orm.repository.JpaCredentialRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,11 +20,11 @@ import java.util.stream.Collectors;
 @Transactional
 public class DbUserDetailsService implements UserDetailsService {
 
-    private final CredentialRepository credentialRepository;
+    private final JpaCredentialRepository jpaCredentialRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) {
-        Credential credential = credentialRepository.findByEmail(email)
+        Credential credential = jpaCredentialRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Patient with username: " + email + " was not found."));
 
         return new User(credential.getEmail(), credential.getHashedPassword(), getAuthority(credential));

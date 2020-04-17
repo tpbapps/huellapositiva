@@ -33,7 +33,7 @@ class EmailConfirmationControllerShould {
     @Test
     void confirm_email_should_return_204() throws Exception {
         UUID token = UUID.randomUUID();
-        testData.createEmailConfirmation(token);
+        testData.createCredential("email@huellapositiva.com", token);
 
         mvc.perform(get(baseUri + '/' + token)
                 .contentType(MediaType.APPLICATION_JSON))
