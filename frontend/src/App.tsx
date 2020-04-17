@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import VolunteerLogin from './pages/VolunteerLogin';
+import VolunteerRegister from './pages/VolunteerRegister';
 import AdminLogin from './pages/AdminLogin';
 
 const App: React.FC = () => {
@@ -36,7 +36,7 @@ const App: React.FC = () => {
 
             <Switch>
               <Route exact path="/volunteer-login">
-                <VolunteerLogin />
+                <VolunteerRegister />
               </Route>
               <Route path="/admin-login">
                 <AdminLogin />
