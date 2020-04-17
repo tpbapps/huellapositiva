@@ -1,5 +1,6 @@
 import React from 'react';
-import { FormRegisterVolunteer } from '../components/molecules/FormRegisterVolunteer';
+import './VolunteerRegister.scss';
+import { FormRegisterVolunteer } from '../../components/molecules/FormRegisterVolunteer';
 
 const VolunteerRegister: React.FC = () => {
   return (

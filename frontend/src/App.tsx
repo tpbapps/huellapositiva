@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import VolunteerRegister from './pages/VolunteerRegister';
-import AdminLogin from './pages/AdminLogin';
+import VolunteerRegister from './pages/VolunteerRegister/VolunteerRegister';
+import VolunteerLogin from './pages/VolunteerLogin/VolunteerLogin';
 
 const App: React.FC = () => {
   return (
@@ -18,7 +18,7 @@ const App: React.FC = () => {
               </div>
               <div className="column">
                 <h1 className="title">
-                  <Link to="/admin-login">Acceso Administrador</Link>
+                  <Link to="/volunteer-register">Registrar Voluntario</Link>
                 </h1>
               </div>
             </div>
@@ -36,10 +36,10 @@ const App: React.FC = () => {
 
             <Switch>
               <Route exact path="/volunteer-login">
-                <VolunteerRegister />
+                <VolunteerLogin />
               </Route>
-              <Route path="/admin-login">
-                <AdminLogin />
+              <Route path="/volunteer-register">
+                <VolunteerRegister />
               </Route>
             </Switch>
           </div>
