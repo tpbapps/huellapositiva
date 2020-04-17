@@ -1,8 +1,9 @@
 import React from 'react';
-import './App.css';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import './index.scss';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import VolunteerRegister from './pages/VolunteerRegister/VolunteerRegister';
 import VolunteerLogin from './pages/VolunteerLogin/VolunteerLogin';
+import { Home } from './pages/Home/Home';
 
 const App: React.FC = () => {
   return (
@@ -10,36 +11,15 @@ const App: React.FC = () => {
       <Router>
         <section className="section">
           <div className="container">
-            <div className="columns">
-              <div className="column">
-                <h1 className="title">
-                  <Link to="/volunteer-login">Acceso Voluntarios</Link>
-                </h1>
-              </div>
-              <div className="column">
-                <h1 className="title">
-                  <Link to="/volunteer-register">Registrar Voluntario</Link>
-                </h1>
-              </div>
-            </div>
-          </div>
-
-          <hr />
-
-          <div className="container">
-            <div className="notification">
-              <h3 className="subtitle">
-                TODO: Hacer portada con dos opciones nada mas, acceso voluntario o acceso
-                administrador
-              </h3>
-            </div>
-
             <Switch>
+              <Route exact path="/">
+                <Home/>
+              </Route>
               <Route exact path="/volunteer-login">
-                <VolunteerLogin />
+                <VolunteerLogin/>
               </Route>
               <Route path="/volunteer-register">
-                <VolunteerRegister />
+                <VolunteerRegister/>
               </Route>
             </Switch>
           </div>
