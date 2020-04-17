@@ -1,13 +1,7 @@
 package com.huellapositiva.util;
 
-import com.huellapositiva.domain.Credential;
-import com.huellapositiva.domain.EmailConfirmation;
-import com.huellapositiva.domain.Role;
-import com.huellapositiva.domain.Roles;
-import com.huellapositiva.domain.repository.CredentialRepository;
-import com.huellapositiva.domain.repository.EmailConfirmationRepository;
-import com.huellapositiva.domain.repository.RoleRepository;
-import com.huellapositiva.domain.repository.VolunteerRepository;
+import com.huellapositiva.infrastructure.orm.JpaCredentialRepository;
+import com.huellapositiva.infrastructure.orm.JpaVolunteerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestComponent;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,10 +14,10 @@ import java.util.UUID;
 public class TestData {
 
     @Autowired
-    private VolunteerRepository volunteerRepository;
+    private JpaVolunteerRepository volunteerRepository;
 
     @Autowired
-    private CredentialRepository credentialRepository;
+    private JpaCredentialRepository jpaCredentialRepository;
 
     @Autowired
     private EmailConfirmationRepository emailConfirmationRepository;
@@ -33,6 +27,7 @@ public class TestData {
 
     public void resetData() {
         volunteerRepository.deleteAll();
+        jpaCredentialRepository.deleteAll();
         credentialRepository.deleteAll();
         emailConfirmationRepository.deleteAll();
     }
