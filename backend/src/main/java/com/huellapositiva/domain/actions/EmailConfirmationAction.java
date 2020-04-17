@@ -1,9 +1,10 @@
 package com.huellapositiva.domain.actions;
 
 import com.huellapositiva.domain.Credential;
+import com.huellapositiva.domain.EmailConfirmation;
 import com.huellapositiva.domain.exception.EmailConfirmationHashNotFound;
-import com.huellapositiva.domain.repository.CredentialRepository;
-import com.huellapositiva.domain.repository.EmailConfirmationRepository;
+import com.huellapositiva.domain.repository.JpaEmailConfirmationRepository;
+import com.huellapositiva.infrastructure.orm.JpaCredentialRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,17 +15,14 @@ import java.util.UUID;
 @Transactional
 public class EmailConfirmationAction {
 
-    private final EmailConfirmationRepository emailConfirmationRepository;
+    private final JpaEmailConfirmationRepository jpaEmailConfirmationRepository;
 
-    private final CredentialRepository credentialRepository;
+    private final JpaCredentialRepository credentialRepository;
 
     public void execute(UUID hash) {
-//        EmailConfirmation emailConfirmation = emailConfirmationRepository.findByHash(hash.toString())
-//                .orElseThrow(() -> new EmailConfirmationHashNotFound("Hash " + hash + " not found"));
-
-        Credential credential = credentialRepository.findByEmailConfirmationHash(hash.toString())
+        EmailConfirmation emailConfirmation = jpaEmailConfirmationRepository.findByHash(hash.toString())
                 .orElseThrow(() -> new EmailConfirmationHashNotFound("Hash " + hash + " not found"));
-
+        Credential credential = emailConfirmation.getCredential();
         credential.setEmailConfirmed(true);
         credentialRepository.save(credential);
     }

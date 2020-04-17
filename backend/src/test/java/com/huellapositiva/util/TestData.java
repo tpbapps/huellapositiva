@@ -1,6 +1,12 @@
 package com.huellapositiva.util;
 
+import com.huellapositiva.domain.Credential;
+import com.huellapositiva.domain.EmailConfirmation;
+import com.huellapositiva.domain.Role;
+import com.huellapositiva.domain.Roles;
+import com.huellapositiva.domain.repository.JpaEmailConfirmationRepository;
 import com.huellapositiva.infrastructure.orm.JpaCredentialRepository;
+import com.huellapositiva.infrastructure.orm.JpaRoleRepository;
 import com.huellapositiva.infrastructure.orm.JpaVolunteerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestComponent;
@@ -20,16 +26,16 @@ public class TestData {
     private JpaCredentialRepository jpaCredentialRepository;
 
     @Autowired
-    private EmailConfirmationRepository emailConfirmationRepository;
+    private JpaEmailConfirmationRepository jpaEmailConfirmationRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
+    private JpaRoleRepository roleRepository;
 
     public void resetData() {
         volunteerRepository.deleteAll();
         jpaCredentialRepository.deleteAll();
-        credentialRepository.deleteAll();
-        emailConfirmationRepository.deleteAll();
+        jpaCredentialRepository.deleteAll();
+        jpaEmailConfirmationRepository.deleteAll();
     }
 
     public EmailConfirmation createEmailConfirmation(UUID token){
@@ -38,7 +44,7 @@ public class TestData {
                 .hash(token.toString())
                 .build();
 
-        return emailConfirmationRepository.save(emailConfirmation);
+        return jpaEmailConfirmationRepository.save(emailConfirmation);
     }
 
     public void createCredential( String email, UUID token){
@@ -53,6 +59,6 @@ public class TestData {
                 .roles(Collections.singleton(role))
                 .build();
 
-        credentialRepository.save(credential);
+        jpaCredentialRepository.save(credential);
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface EmailConfirmationRepository extends JpaRepository<EmailConfirmation, Integer> {
+public interface JpaEmailConfirmationRepository extends JpaRepository<EmailConfirmation, Integer> {
 
     @Query("FROM EmailConfirmation ec LEFT JOIN FETCH ec.credential WHERE ec.hash = :hash")
     Optional<EmailConfirmation> findByHash(@Param("hash") String hash);
