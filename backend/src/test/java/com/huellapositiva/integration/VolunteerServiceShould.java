@@ -1,8 +1,6 @@
 package com.huellapositiva.integration;
 
 import com.huellapositiva.application.dto.RegisterVolunteerRequestDto;
-import com.huellapositiva.domain.exception.EmailNotAllowed;
-import com.huellapositiva.domain.exception.PasswordNotAllowed;
 import com.huellapositiva.infrastructure.orm.model.Credential;
 import com.huellapositiva.domain.Roles;
 import com.huellapositiva.infrastructure.orm.model.Volunteer;
@@ -21,7 +19,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.Is.is;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
@@ -65,35 +62,5 @@ class VolunteerServiceShould {
         assertThat(passwordEncoder.matches(password, credential.getHashedPassword()), is(true));
         assertThat(credential.getRoles(), hasSize(1));
         assertThat(credential.getRoles().iterator().next().getName(), is(Roles.VOLUNTEER.toString()));
-    }
-
-    @Test
-    void not_create_a_volunteer_with_invalid_email(){
-        String email = ".@huellapositiva.com";
-        String password = "password";
-
-
-        assertThrows(EmailNotAllowed.class, () -> {
-            RegisterVolunteerRequestDto dto = RegisterVolunteerRequestDto.builder()
-                    .email(email)
-                    .password(password)
-                    .build();
-            volunteerService.registerVolunteer(dto);
-        });
-    }
-
-    @Test
-    void not_create_a_volunteer_with_invalid_password(){
-        String email = "foo@huellapositiva.com";
-        String password = "12345";
-
-
-        assertThrows(PasswordNotAllowed.class, () -> {
-            RegisterVolunteerRequestDto dto = RegisterVolunteerRequestDto.builder()
-                    .email(email)
-                    .password(password)
-                    .build();
-            volunteerService.registerVolunteer(dto);
-        });
     }
 }
